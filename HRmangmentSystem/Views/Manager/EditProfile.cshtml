@@ -1,0 +1,37 @@
+﻿@model HRmangmentSystem.Models.Manager
+@{
+    Layout = "_ManagerLayout";
+}
+<h2 class="mb-4">Edit Profile</h2>
+<div class="card shadow-lg p-4">
+    <form asp-controller="Manager" asp-action="EditProfile" method="post" enctype="multipart/form-data">
+        <div class="form-group mb-3">
+            <label>First Name</label>
+            <input type="text" asp-for="FirstName" class="form-control" required />
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Last Name</label>
+            <input type="text" asp-for="LastName" class="form-control" required />
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Email</label>
+            <input type="email" asp-for="Email" class="form-control" required />
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Current Profile Image</label>
+            <br>
+            <img src="~/image/Manger/@Model.ProfileImage" class="rounded" width="120" height="120" />
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Upload New Profile Image</label>
+            <input type="file" name="ImageFile" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+</div>
+

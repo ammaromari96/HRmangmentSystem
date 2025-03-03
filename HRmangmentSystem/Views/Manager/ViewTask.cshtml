@@ -1,0 +1,115 @@
+﻿@model List<EmployeeTask>
+
+@{
+    ViewData["Title"] = "ViewTask";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+<head>
+    <style>
+        #voiceSearchBtn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+    </head>
+
+<h2>Employee Tasks</h2>
+<div class="d-flex">
+<input type="text" id="taskSearch" placeholder="Search tasks..." class="form-control w-25">
+<button class="btn btn-light-primary" id="voiceSearchBtn">🎤</button>
+
+
+<a asp-controller="Manager" asp-action="ExportToPDF" asp-route-reportType="Task" asp-route-id="@ViewBag.EmployeeId" class="btn btn-primary">Download Task Report</a>
+</div>
+<br />
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th hidden scope="col"> Emoloyee ID</th>
+
+            <th scope="col">Title</th>
+            <th scope="col">Descripition</th>
+            <th scope="col">start Date </th>
+
+            <th scope="col">Due Date</th>
+            <th scope="col">Status</th>
+            <th scope="col"> Priority</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="task-table">
+                <th hidden scope="row">@item.Id</th>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
+                <td>@item.StartDate</td>
+                <td>@item.DueDate</td>
+                <td>@item.Status</td>
+                <td>@item.Priority</td>
+
+            </tr>
+
+        }
+
+    </tbody>
+</table>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const searchInput = document.getElementById("taskSearch");
+        const searchButton = document.getElementById("voiceSearchBtn");
+        const rows = document.querySelectorAll(".task-row"); // Select all task rows
+
+        // Function to filter tasks
+        function searchTasks(query) {
+            const lowerCaseQuery = query.toLowerCase().trim();
+            rows.forEach(row => {
+                const rowText = row.textContent.toLowerCase();
+                if (rowText.includes(lowerCaseQuery)) {
+                    row.style.display = ""; // Show matching rows
+                } else {
+                    row.style.display = "none"; // Hide non-matching rows
+                }
+            });
+        }
+
+        // Input field event listener (filters tasks when user types)
+        searchInput.addEventListener("input", function () {
+            searchTasks(searchInput.value);
+        });
+
+        // Check if SpeechRecognition is supported
+        if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recognition = new SpeechRecognition();
+            recognition.lang = "en-US"; // Change language if needed
+            recognition.continuous = false;
+            recognition.interimResults = false;
+
+            searchButton.addEventListener("click", function () {
+                recognition.start();
+                searchButton.textContent = "Listening...";
+            });
+
+            recognition.onresult = function (event) {
+                const transcript = event.results[0][0].transcript;
+                searchInput.value = transcript; // Put recognized text in input field
+                searchTasks(transcript); // Call function to filter tasks
+                searchButton.textContent = "🎤";
+            };
+
+            recognition.onerror = function (event) {
+                console.error("Recognition Error: ", event.error);
+                searchButton.textContent = "🎤";
+            };
+        } else {
+            alert("Your browser does not support Speech Recognition.");
+        }
+    });
+</script>

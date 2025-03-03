@@ -1,0 +1,264 @@
+﻿@model HRmangmentSystem.Models.Feedback
+
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> Hosting | Template</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets/img/favicon.ico">
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="~/css/HomeCss/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/HomeCss/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/HomeCss/slicknav.css">
+    <link rel="stylesheet" href="~/css/HomeCss/animate.min.css">
+    <link rel="stylesheet" href="~/css/HomeCss/hamburgers.min.css">
+    <link rel="stylesheet" href="~/css/HomeCss/magnific-popup.css">
+    <link rel="stylesheet" href="~/css/HomeCss/fontawesome-all.min.css">
+    <link rel="stylesheet" href="~/css/HomeCss/themify-icons.css">
+    <link rel="stylesheet" href="~/css/HomeCss/themify-icons.css">
+    <link rel="stylesheet" href="~/css/HomeCss/slick.css">
+    <link rel="stylesheet" href="~/css/HomeCss/nice-select.css">
+    <link rel="stylesheet" href="~/css/HomeCss/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <style>
+        .form-contact .form-group {
+            margin-bottom: 19px;
+        }
+
+        .map-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%; /* Make it take the full width */
+            height: 500px; /* Adjust height as needed */
+        }
+
+            .map-container iframe {
+                width: 90%; /* Adjust width for rectangular shape */
+              
+                height: 400px; /* Set height for rectangle shape */
+                border-radius: 15px; /* Optional rounded corners */
+                border: none;
+            }
+
+        .contact-section {
+            padding: 130px 0 0px !important;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <div class="header-area header-transparent">
+            <div class="main-header">
+                <div class="header-bottom header-sticky">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <div class="col-xl-2 col-lg-2">
+                                <div class="logo">
+                                    <a href="index.html">
+                                        <img src="~/image/imgHome/logo/logo2.png" alt="" style="height: 6vw;">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-10">
+                                <div class="menu-wrapper d-flex align-items-center justify-content-end">
+                                    <div class="main-menu d-none d-lg-block">
+                                        <nav>
+                                            <ul id="navigation">
+                                                <li><a asp-action="Index">Home</a></li>
+                                                <li><a asp-action="Department">Services</a></li>
+                                                <li><a asp-action="About">About</a></li>
+                                                <li><a asp-action="ContactUS">Contact</a></li>
+                                                <li class="button-header margin-left"><a asp-action="ChoseLogin" class="btn">Login</a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="slider-area slider-bg">
+            <div class="single-slider d-flex align-items-center slider-height3">
+                <div class="container">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-xl-8 col-lg-9 col-md-12">
+                            <div class="hero__caption hero__caption3 text-center">
+                                <h1 data-animation="fadeInLeft" data-delay=".6s">Contact us</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="contact-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="contact-title">Get in Touch</h2>
+                    </div>
+                    <div class="col-lg-8">
+                        <form id="feedbackForm" asp-action="SubmitFeedback" asp-controller="Home" method="post">
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" id="name" name="name" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="email" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message:</label>
+                                <textarea id="message" name="message" class="form-control" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3363.009560388824!2d35.847093875112236!3d32.55259009542249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151c7715f2c2e7ab%3A0x51755840c8ddbefd!2sOrange%20Digital%20Village%20Irbid!5e0!3m2!1sen!2sjo!4v1740915280477!5m2!1sen!2sjo"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </main>
+
+    <footer style="background-color: #3B1440 !important;">
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="footer-border">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="footer-copy-right text-center">
+                                <p>Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made by Cloudify Team</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>  <!-- Scroll Up -->
+  <div id="back-top" >
+    <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+</div>
+
+<!-- JS here -->
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/jsHome/jquery-1.12.4.min.js"></script>
+        <script src="~/js/jsHome/vendor/modernizr-3.5.0.min.js"></script>
+<!-- Jquery, Popper, Bootstrap -->
+        <script src="~/js/jsHome/vendor/jquery-1.12.4.min.js"></script>
+        <script src="~/js/jsHome/popper.min.js"></script>
+        <script src="~/js/jsHome/bootstrap.min.js"></script>
+<!-- Jquery Mobile Menu -->
+        <script src="~/js/jsHome/jquery.slicknav.min.js"></script>
+
+<!-- Jquery Slick , Owl-Carousel Plugins -->
+        <script src="~/js/jsHome/owl.carousel.min.js"></script>
+        <script src="~/js/jsHome/slick.min.js"></script>
+<!-- One Page, Animated-HeadLin -->
+        <script src="~/js/jsHome/wow.min.js"></script>
+        <script src="~/js/jsHome/animated.headline.js"></script>
+        <script src="~/js/jsHome/jquery.magnific-popup.js"></script>
+
+<!-- Date Picker -->
+        <script src="~/js/jsHome/gijgo.min.js"></script>
+<!-- Nice-select, sticky -->
+        <script src="~/js/jsHome/jquery.nice-select.min.js"></script>
+        <script src="~/js/jsHome/jquery.sticky.js"></script>
+
+<!-- counter , waypoint,Hover Direction -->
+        <script src="~/js/jsHome/jquery.counterup.min.js"></script>
+        <script src="~/js/jsHome/waypoints.min.js"></script>
+        <script src="~/js/jsHome/jquery.countdown.min.js"></script>
+        <script src="~/js/jsHome/hover-direction-snake.min.js"></script>
+
+<!-- contact js -->
+        <script src="~/js/jsHome/contact.js"></script>
+        <script src="~/js/jsHome/jquery.form.js"></script>
+        <script src="~/js/jsHome/jquery.validate.min.js"></script>
+        <script src="~/js/jsHome/mail-script.js"></script>
+        <script src="~/js/jsHome/jquery.ajaxchimp.min.js"></script>
+
+<!-- Jquery Plugins, main Jquery -->
+        <script src="~/js/jsHome/plugins.js"></script>
+        <script src="~/assets/js/main.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#feedbackForm").submit(function (event) {
+                event.preventDefault(); // Prevent normal form submission
+
+                // Validate form fields
+                var name = $("#name").val();
+                var email = $("#email").val();
+                var message = $("#message").val();
+
+                if (!name || !email || !message) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'All fields are required!',
+                        confirmButtonColor: '#743DB5'
+                    });
+                    return;
+                }
+
+                // Send form via AJAX
+                $.ajax({
+                    type: "POST",
+                    url: $("#feedbackForm").attr("action"),
+                    data: $("#feedbackForm").serialize(),
+                    success: function () {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Thank you!',
+                            text: 'Your feedback has been sent successfully.',
+                            confirmButtonColor: '#743DB5',
+                            timer: 3000
+                        }).then(() => {
+                            $("#feedbackForm")[0].reset(); // Clear form after success
+                        });
+                    },
+                    error: function () {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Something went wrong. Please try again later.',
+                            confirmButtonColor: '#743DB5'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

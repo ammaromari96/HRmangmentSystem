@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Evaluation>
+
+@{
+    Layout = "~/Views/Shared/Hr_Layout.cshtml";
+}
+
+
+<h2>Employee Evaluations</h2>
+
+<div class="d-flex justify-content-start">
+    <a href="@Url.Action("DownloadEvaluationsPDF", "HR")" class="btn btn-primary">
+        <i class="bx bx-download"></i> Download PDF
+    </a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Employee</th>
+            <th>Department</th>
+            <th>Email</th>
+            <th>Score</th>
+            <th>Date Evaluated</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var evaluation in Model)
+        {
+            <tr>
+                <td>@evaluation.Employee.FirstName @evaluation.Employee.LastName</td>
+                <td>@evaluation.Employee.Department?.DepartmentName</td>
+                <td>@evaluation.Employee.Email</td>
+                <td>@evaluation.Score</td>
+                <td>@evaluation.DateEvaluated</td>
+            </tr>
+        }
+    </tbody>
+</table>

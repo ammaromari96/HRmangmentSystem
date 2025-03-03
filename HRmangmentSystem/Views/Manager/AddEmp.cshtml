@@ -1,0 +1,41 @@
+﻿@model HRmangmentSystem.Models.Employee
+@{
+    ViewData["Title"] = "AddEmp";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+
+<form asp-controller="Manager" asp-action="HandleAddEmp" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="ManagerId" value="@ViewBag.ManagerID" />
+
+    <div class="mb-3">
+        <label class="form-label">First Name</label>
+        <input name="FirstName" type="text" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Last Name</label>
+        <input name="LastName" type="text" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input name="Email" type="text" class="form-control">
+    </div>
+
+    <div class="mb-3">
+
+        <label class="form-label">Password</label>
+        <input name="Password" type="password" class="form-control">
+
+    </div>
+
+    <div>
+        <label class="form-label">Profile Image:</label>
+        <input type="file" name="ImageFile" class="form-control" />
+    </div>
+
+   
+        <input asp-for="DepartmentId" value="@ViewBag.DepartmentID" type="hidden"/>
+
+    <button type="submit" class="btn btn-primary mt-4">Add New Employee</button>
+</form>

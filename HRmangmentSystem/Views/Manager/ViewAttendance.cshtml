@@ -1,0 +1,46 @@
+﻿@model List<Attendance>
+@{
+    ViewData["Title"] = "ViewAttendance";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+
+
+<a asp-controller="Manager" asp-action="ExportToPDF" asp-route-reportType="Attendenc" asp-route-id="@ViewBag.EmployeeId" class="btn btn-primary">Download Attendenc Report</a>
+<br />
+<br />
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+           @*  <th scope="col"> Emoloyee ID</th> *@
+
+            <th scope="col">Date</th>
+            <th scope="col">Punch In</th>
+            <th scope="col">Punch Out </th>
+
+            <th scope="col">Hours Work</th>
+            <th scope="col">Status</th>
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+               @*  <th scope="row">@item.Id</th> *@
+                <td>@item.Date</td>
+                <td>@item.PunchIn</td>
+                <td>@item.PunchOut</td>
+                <td>@item.Hours</td>
+                <td>@item.Status</td>
+
+
+            </tr>
+        }
+
+    </tbody>
+</table>

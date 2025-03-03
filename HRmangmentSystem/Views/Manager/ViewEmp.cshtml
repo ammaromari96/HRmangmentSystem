@@ -1,0 +1,49 @@
+﻿@model List<Employee>
+@{
+    ViewData["Title"] = "ViewEmp";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+
+<a asp-controller="Manager" asp-action="ExportToPDF" asp-route-reportType="employees" asp-route-id="@ViewBag.ManagerId" class="btn btn-primary">Download Employees Report</a><br /><br />
+
+<table class="table">
+    <thead>
+
+        <tr>
+            <th scope="col"> Emoloyee ID</th>
+
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email </th>
+
+            <th scope="col">Department</th>
+            <th scope="col">Profile Image</th>
+            <th scope="col"> Action</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.Email</td>
+
+                <td>@(item.Department != null ? item.Department.DepartmentName : "No Department Assigned")</td>
+
+                <td>@item.ProfileImage</td>
+
+
+                <td>
+                    <a asp-controller="Manager" asp-action="ViewTask" asp-route-id="@item.Id" name="viewTask" type="submit" class="btn btn-primary">  View Task</a>
+                    <a asp-controller="Manager" asp-action="ViewAttendance" asp-route-id="@item.Id" name="viewTask" type="submit" class="btn btn-primary">  View Attendance</a>
+
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

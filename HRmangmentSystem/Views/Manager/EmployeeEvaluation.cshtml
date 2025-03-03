@@ -1,0 +1,115 @@
+﻿@{
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+    <div class="container">
+        <h2 class="text-center mb-4">Employee Yearly Evaluation</h2>
+    <form asp-action="SubmitEvaluation">
+        <input type="hidden" name="evaluationId" value="@ViewBag.EvaluationId" />
+        <input type="hidden" name="employeeId" value="@ViewBag.EmployeeId" />
+            <div class="mb-3">
+                <label class="form-label">1. Employee's productivity throughout the year?</label>
+            <select class="form-select" name="Scores">
+                <option value="5">Excellent</option>
+                <option value="4">Very Good</option>
+                <option value="3">Good</option>
+                <option value="2">Fair</option>
+                <option value="1">Poor</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">2. Communication skills?</label>
+            <select class="form-select" name="Scores">
+                <option value="5">Excellent</option>
+                <option value="4">Very Good</option>
+                <option value="3">Good</option>
+                <option value="2">Fair</option>
+                <option value="1">Poor</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">3. Ability to work in a team?</label>
+            <select class="form-select" name="Scores">
+                <option value="5">Excellent</option>
+                <option value="4">Very Good</option>
+                <option value="3">Good</option>
+                <option value="2">Fair</option>
+                <option value="1">Poor</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">4. Problem-solving skills?</label>
+            <select class="form-select" name="Scores">
+                <option value="5">Excellent</option>
+                <option value="4">Very Good</option>
+                <option value="3">Good</option>
+                <option value="2">Fair</option>
+                <option value="1">Poor</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">5. Attendance and punctuality?</label>
+            <select class="form-select" name="Scores">
+                <option value="5">Excellent</option>
+                <option value="4">Very Good</option>
+                <option value="3">Good</option>
+                <option value="2">Fair</option>
+                <option value="1">Poor</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">6. Adaptability to changes?</label>
+            <select class="form-select" name="Scores">
+                <option value="5">Excellent</option>
+                <option value="4">Very Good</option>
+                <option value="3">Good</option>
+                <option value="2">Fair</option>
+                <option value="1">Poor</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">7. Leadership and initiative?</label>
+            <select class="form-select" name="Scores">
+                <option value="5">Excellent</option>
+                <option value="4">Very Good</option>
+                <option value="3">Good</option>
+                <option value="2">Fair</option>
+                <option value="1">Poor</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">8. Quality of work delivered?</label>
+            <select class="form-select" name="Scores">
+                <option value="5">Excellent</option>
+                <option value="4">Very Good</option>
+                <option value="3">Good</option>
+                <option value="2">Fair</option>
+                <option value="1">Poor</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">9. Ability to meet deadlines?</label>
+            <select class="form-select" name="Scores">
+                <option value="5">Excellent</option>
+                <option value="4">Very Good</option>
+                <option value="3">Good</option>
+                <option value="2">Fair</option>
+                <option value="1">Poor</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">10. Overall performance and contribution?</label>
+            <select class="form-select" name="Scores">
+                <option value="5">Excellent</option>
+                <option value="4">Very Good</option>
+                <option value="3">Good</option>
+                <option value="2">Fair</option>
+                <option value="1">Poor</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Submit Evaluation </button>
+        </form>
+    @if (ViewBag.Result != null)
+    {
+        <div class="mt-3 text-center fw-bold">Evaluation Result: @ViewBag.Result</div>
+    }
+    </div>

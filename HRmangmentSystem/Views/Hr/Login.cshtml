@@ -1,0 +1,47 @@
+﻿@model HRmangmentSystem.Models.Hr
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true">
+    <script src="https://kit.fontawesome.com/585fda3aab.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div class="login-box">
+        <h2>Login</h2>
+        <p>Login as HR</p>
+
+        <form asp-controller="Hr" asp-action="Login" method="post">
+            <div class="form-group">
+                <label asp-for="Email">Email</label>
+                <i class="fa-solid fa-user"></i>
+                <input asp-for="Email" placeholder="Your email" class="form-control" required>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password">Password</label>
+                <i class="fa-solid fa-lock"></i>
+                <input asp-for="Password" type="password" placeholder="Your password" class="form-control" required>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn">Log In</button>
+
+            <div>
+                <a asp-action="ForgetPassword" class="forgot">Forgot Your Password?</a>
+
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

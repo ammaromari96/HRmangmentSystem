@@ -1,0 +1,132 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f4f7f6;
+    margin: 0;
+    
+}
+
+/ Headings /
+h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+/ Form Styling /
+form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+    form .form-group {
+        margin-bottom: 15px;
+    }
+
+        form .form-group label {
+            font-weight: bold;
+        }
+
+    form input, form select, form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+/ Buttons /
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary {
+    background: #1d2b64;
+    color: #fff;
+    border: none;
+}
+
+    .btn-primary:hover {
+        background: #3c497d;
+        transform: scale(1.05);
+    }
+
+.btn-success {
+    background: #28a745;
+    color: #fff;
+    border: none;
+}
+
+    .btn-success:hover {
+        background: #218838;
+    }
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    margin-top: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+thead {
+    background: linear-gradient(135deg, #743DB5, #FF758C); /* Updated Gradient */
+    color: #fff;
+    font-size: 18px; /* Larger font size */
+    font-weight: bold;
+}
+
+th, td {
+    padding: 14px; /* More padding for better spacing */
+    border: 1px solid #ddd;
+    text-align: center;
+    font-size: 16px; /* Bigger text for readability */
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f4f4f4;
+}
+
+tbody tr:hover {
+    background-color: #fde2e2;
+    transform: translateY(-3px);
+    transition: 0.3s ease-in-out;
+}
+
+/* Alerts */
+.alert {
+    padding: 12px;
+    margin: 20px auto;
+    width: 85%;
+    text-align: center;
+    border-radius: 6px;
+    font-size: 16px; /* Bigger text */
+    font-weight: bold;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-left: 6px solid #28a745;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-left: 6px solid #dc3545;
+}
+
+

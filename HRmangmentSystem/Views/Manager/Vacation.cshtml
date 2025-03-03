@@ -1,0 +1,44 @@
+﻿@{
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+
+<a asp-controller="Manger" asp-action="ExportToPDF" asp-route-reportType="leaves" asp-route-id="1" class="btn btn-primary">Download Leaves Report</a>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Employee</th>
+            <th>Leave Type</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Status</th>
+            <th>Reason</th>
+            <th>Approve</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var leave in Model)
+        {
+            <tr>
+                <td>@leave.Employee?.FirstName @leave.Employee?.LastName</td>
+                <td>@leave.LeaveType</td>
+                <td>@leave.StartDate?.ToShortDateString()</td>
+                <td>@leave.EndDate?.ToShortDateString()</td>
+                <td>@leave.Status</td>
+                <td>@leave.Reason</td>
+                <td>
+                    @if (@leave.Status == "Pending"){
+                        <a asp-controller="Manager" asp-action="UpdateVacation" asp-route-id="@leave.Id" asp-route-approve="Approved" class="btn btn-success">Approve</a>
+                        <a asp-controller="Manager" asp-action="UpdateVacation" asp-route-id="@leave.Id" asp-route-approve="Rejected" class="btn btn-danger">Rejecte</a>
+                    }
+                   @*  else{
+                        <a asp-controller="Manager" asp-action="UpdateVacation" asp-route-id="@leave.Id" asp-route-approve="Approved" class="btn btn-success disabled" >Approve</a>
+                        <a asp-controller="Manager" asp-action="UpdateVacation" asp-route-id="@leave.Id" asp-route-approve="Rejected" class="btn btn-danger disabled">Rejecte</a>
+                    } *@
+                   
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

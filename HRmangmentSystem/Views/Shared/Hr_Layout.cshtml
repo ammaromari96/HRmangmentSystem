@@ -1,0 +1,212 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <title>@ViewData["Title"] - Dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="~/assets/images/favicon.svg" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/fonts/phosphor/duotone/style.css">
+    <link rel="stylesheet" href="~/assets/fonts/tabler-icons.min.css">
+    <link rel="stylesheet" href="~/assets/fonts/feather.css">
+    <link rel="stylesheet" href="~/assets/fonts/fontawesome.css">
+    <link rel="stylesheet" href="~/assets/fonts/material.css">
+    <link rel="stylesheet" href="~/assets/css/style.css" id="main-style-link">
+    <link rel="stylesheet" href="~/css/site1.css" />
+</head>
+@{
+    int? Loged = Context.Session.GetInt32("HrId");
+    string? LogedImg = Context.Session.GetString("HrImg");
+    string? LogedName = Context.Session.GetString("HrName");
+
+}
+<style>
+    .logo-lg {
+        width: 150px;
+        height: auto;
+        display: block;
+        margin: 10px auto;
+    }
+</style>
+
+<body data-pc-sidebar-theme="dark" data-pc-header-theme="light">
+    <!-- Pre-loader -->
+    <div class="loader-bg">
+        <div class="pc-loader">
+            <div class="loader-fill"></div>
+        </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <nav class="pc-sidebar">
+        <div class="navbar-wrapper">
+            <div class="m-header">
+                <a asp-controller="HR" asp-action="Dashboard" asp-route-id="@Loged" class="b-brand text-primary">
+                    <img src="~/assets/images/logo2.png" alt="logo image" class="logo-lg">
+                </a>
+            </div>
+            <div class="navbar-content">
+                <ul class="pc-navbar">
+
+                    <!-- Dashboard -->
+                    <li class="pc-item">
+                        <a asp-controller="HR" asp-action="Dashboard" asp-route-id="@Loged" class="pc-link">
+                            <span class="pc-micon"><i class="material-icons-two-tone">home</i></span>
+                            <span class="pc-mtext">Dashboard</span>
+                        </a>
+                    </li>
+
+
+
+                    <li class="pc-item">
+                        <a asp-controller="Hr" asp-action="Profile" asp-route-id="@Loged" class="pc-link">
+                            <span class="pc-micon"><i class="material-icons-two-tone">verified_user</i></span>
+                            <span class="pc-mtext">Profile</span>
+                        </a>
+                    </li>
+                    <!-- Management Dropdown -->
+                    <li class="pc-item pc-hasmenu">
+                        <a href="#!" class="pc-link">
+                            <span class="pc-micon"><i class="material-icons-two-tone">list_alt</i></span>
+                            <span class="pc-mtext">Management</span>
+                            <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                        </a>
+                        <ul class="pc-submenu">
+                            <li class="pc-item"><a asp-controller="HR" asp-action="AddDepartment" asp-route-id="@Loged" class="pc-link"> Add Department</a></li>
+                            <li class="pc-item"><a asp-controller="HR" asp-action="AddManager" asp-route-id="@Loged" class="pc-link"> Add Manager</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Other HR Pages -->
+                    <li class="pc-item">
+                        <a asp-controller="HR" asp-action="Departments" asp-route-id="@Loged" class="pc-link">
+                            <span class="pc-micon"><i class="material-icons-two-tone">business</i></span>
+                            <span class="pc-mtext">Department</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a asp-controller="HR" asp-action="ViewEmployees" asp-route-id="@Loged" class="pc-link">
+                            <span class="pc-micon"><i class="material-icons-two-tone">people</i></span>
+                            <span class="pc-mtext">Employee</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a asp-controller="HR" asp-action="ViewManagers" asp-route-id="@Loged" class="pc-link">
+                            <span class="pc-micon"><i class="material-icons-two-tone">supervisor_account</i></span>
+                            <span class="pc-mtext">Managers</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a asp-controller="HR" asp-action="LeaveRequests" asp-route-id="@Loged" class="pc-link">
+                            <span class="pc-micon"><i class="material-icons-two-tone">event</i></span>
+                            <span class="pc-mtext">Leave Requests</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a asp-controller="HR" asp-action="Feedbacks" asp-route-id="@Loged" class="pc-link">
+                            <span class="pc-micon"><i class="material-icons-two-tone">feedback</i></span>
+                            <span class="pc-mtext">Feedback</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a asp-controller="HR" asp-action="Evaluations" asp-route-id="@Loged" class="pc-link">
+                            <span class="pc-micon"><i class="material-icons-two-tone">verified_user</i></span>
+                            <span class="pc-mtext">Evaluations</span>
+                        </a>
+                    </li>
+
+
+
+
+
+                    <li class="pc-item">
+                        <a asp-controller="Employee" asp-action="Logout" asp-route-id="@Loged" class="pc-link">
+                            <span class="pc-micon"><i class="material-icons-two-tone">verified_user</i></span>
+                            <span class="pc-mtext">logout</span>
+                        </a>
+                    </li>
+
+
+
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+    <!-- Header -->
+    <header class="pc-header">
+        <div class="header-wrapper">
+            <!-- [Mobile Media Block] start -->
+            <div class="me-auto pc-mob-drp">
+                <ul class="list-unstyled">
+                    <!-- ======= Menu collapse Icon ===== -->
+                    <li class="pc-h-item pc-sidebar-collapse">
+                        <a href="#" class="pc-head-link ms-0" id="sidebar-hide">
+                            <i class="material-icons-two-tone">menu</i>
+                        </a>
+                    </li>
+                    <li class="pc-h-item pc-sidebar-popup">
+                        <a href="#" class="pc-head-link ms-0" id="mobile-collapse">
+                            <i class="material-icons-two-tone">menu</i>
+                        </a>
+                    </li>
+                   @*  <li class="dropdown pc-h-item d-none d-md-flex">
+                        <a class="pc-head-link active pc-head-link-text dropdown-toggle arrow-none me-0"
+                           data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
+                           aria-expanded="false">Profile</a>
+                        <div class="dropdown-menu pc-h-dropdown">
+                            <a asp-controller="Hr" asp-action="Profile" class="dropdown-item">
+                                <i class="material-icons-two-tone">account_circle</i> <span>My Account</span>
+                            </a>
+                            <a asp-controller="Employee" asp-action="Logout" class="dropdown-item">
+                                <i class="material-icons-two-tone">chrome_reader_mode</i> <span>Logout</span>
+                            </a>
+                        </div>
+                    </li> *@
+                </ul>
+            </div><!-- [Mobile Media Block end] -->
+            <div class="ms-auto">
+                <ul class="list-unstyled">
+
+                    <li class="dropdown pc-h-item header-user-profile">
+                        <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
+                           role="button" aria-haspopup="false" data-bs-auto-close="outside" aria-expanded="false">
+                            <img src="~/image/HR/@LogedImg" alt="user-image" class="user-avtar"> <span class="ms-2">
+                                <span class="user-name">@LogedName</span> 
+                            </span>
+                        </a>
+                       
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header><!-- [ Header ] end --><!-- [ Main Content ] start -->
+    <div class="pc-container">
+        <div class="pc-content">
+            @RenderBody()
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="~/assets/js/plugins/apexcharts.min.js"></script>
+    <script src="~/assets/js/pages/dashboard-default.js"></script>
+    <script src="~/assets/js/plugins/popper.min.js"></script>
+    <script src="~/assets/js/plugins/bootstrap.min.js"></script>
+    <script src="~/assets/js/plugins/feather.min.js"></script>
+    <script src="~/assets/js/pcoded.js"></script>
+    <script>layout_change('light');</script>
+
+    @RenderSection("Scripts",  false)
+</body>
+</html>

@@ -1,0 +1,251 @@
+﻿@* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+ @model HRmangmentSystem.Models.Manager
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger text-center">@TempData["ErrorMessage"]</div>
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success text-center">@TempData["SuccessMessage"]</div>
+}
+
+<div class="profile-card shadow-lg rounded-lg p-4">
+    <div class="profile-header">
+        <img src="~/image/Mng/@Model.ProfileImage" class="profile-img" alt="Profile Image">
+    </div>
+
+    <div class="profile-body text-center">
+        <h2 class="profile-name">@Model.FirstName @Model.LastName</h2>
+        <p class="profile-email"><i class="fas fa-envelope"></i> @Model.Email</p>
+        <p class="profile-department">
+            <i class="fas fa-building"></i> Department: <span>@ViewBag.DepartmentName</span>
+        </p>
+
+
+        <a href="@Url.Action("EditProfile", "Manager")" class="btn btn-edit">Edit Profile</a>
+        <button class="btn btn-reset" data-bs-toggle="modal" data-bs-target="#resetPasswordModal">Reset Password</button>
+    </div>
+</div>
+
+
+
+
+<!-- Reset Password Modal -->
+<div class="modal fade" id="resetPasswordModal" tabindex="-1" aria-labelledby="resetPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="resetPasswordModalLabel">Reset Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="resetPasswordForm" method="post" asp-action="ResetPassword" asp-controller="Manager">
+                    <div class="form-group mb-3">
+                        <label>Current Password</label>
+                        <input type="password" name="CurrentPassword" class="form-control" required />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>New Password</label>
+                        <input type="password" name="NewPassword" class="form-control" required />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Confirm New Password</label>
+                        <input type="password" name="ConfirmPassword" class="form-control" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Change Password</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> *@
+
+
+@model HRmangmentSystem.Models.Manager
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger text-center">@TempData["ErrorMessage"]</div>
+}
+@{
+    Layout = "_ManagerLayout";
+}
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success text-center">@TempData["SuccessMessage"]</div>
+}
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card profile-card shadow-lg">
+        <!-- Profile Image on Top -->
+        <div class="profile-header text-center">
+            <img src="~/image/Manger/@Model.ProfileImage" class="profile-img img-fluid rounded-circle shadow" alt="Profile Image">
+        </div>
+
+        <!-- Manager Info -->
+        <div class="card-body text-center">
+            <h2 class="profile-name">@Model.FirstName @Model.LastName</h2>
+            <p class="profile-email"><i class="fas fa-envelope"></i> @Model.Email</p>
+            <p class="profile-department"><i class="fas fa-building"></i> Department: <span>@ViewBag.DepartmentName</span></p>
+
+            <a href="@Url.Action("EditProfile", "Manager")" class="btn btn-edit me-3"><i class="fas fa-user-edit"></i> Edit Profile</a>
+            <button class="btn btn-reset" data-bs-toggle="modal" data-bs-target="#resetPasswordModal"><i class="fas fa-key"></i> Reset Password</button>
+        </div>
+    </div>
+</div>
+
+<!-- Reset Password Modal -->
+<div class="modal fade" id="resetPasswordModal" tabindex="-1" aria-labelledby="resetPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow-lg rounded-4">
+            <div class="modal-header bg-gradient text-white">
+                <h5 class="modal-title" id="resetPasswordModalLabel"><i class="fas fa-key"></i> Reset Password</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="resetPasswordForm" method="post" asp-action="ResetPassword" asp-controller="Manager">
+                    <div class="mb-3">
+                        <label class="form-label"><i class="fas fa-lock"></i> Current Password</label>
+                        <input type="password" name="CurrentPassword" class="form-control input-custom" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label"><i class="fas fa-unlock"></i> New Password</label>
+                        <input type="password" name="NewPassword" class="form-control input-custom" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label"><i class="fas fa-check-circle"></i> Confirm New Password</label>
+                        <input type="password" name="ConfirmPassword" class="form-control input-custom" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100"><i class="fas fa-save"></i> Change Password</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Center the card */
+    .vh-100 {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Profile Card */
+    .profile-card {
+        width: 700px; /* Bigger card */
+        background: #ffffff;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 12px 30px rgba(116, 61, 181, 0.5); /* Purple shadow */
+        padding-bottom: 25px;
+    }
+
+    /* Profile Image on Top */
+    .profile-header {
+        background: linear-gradient(to right, #743DB5, #5a2d91);
+        padding: 60px 0;
+        position: relative;
+    }
+
+    .profile-img {
+        width: 200px; /* Bigger profile image */
+        height: 200px;
+        border: 6px solid #fff;
+        object-fit: cover;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #fff;
+    }
+
+    /* Profile Name */
+    .profile-name {
+        font-size: 32px;
+        font-weight: bold;
+        color: #333;
+        margin-top: 90px;
+    }
+
+    /* Info Styling */
+    .profile-email, .profile-department {
+        font-size: 20px;
+        color: #555;
+        margin-bottom: 8px;
+    }
+
+        .profile-email i, .profile-department i {
+            margin-right: 8px;
+            color: #743DB5;
+        }
+
+    /* Buttons */
+    .btn-edit, .btn-reset {
+        font-size: 18px;
+        padding: 14px 30px;
+        border-radius: 30px;
+        transition: 0.3s;
+    }
+
+    .btn-edit {
+        background: #743DB5;
+        color: #fff;
+    }
+
+    .btn-reset {
+        background: #343a40;
+        color: #fff;
+    }
+
+        /* Reset Password Button Hover */
+        .btn-reset:hover {
+            background: #743DB5;
+            color: #FFD700 !important; /* Gold text on hover */
+        }
+
+    .btn-edit:hover {
+        background: #5a2d91;
+    }
+
+    /* Reset Password Modal */
+    .modal-header {
+        background: linear-gradient(135deg, #743DB5, #5a2d91);
+        border-radius: 10px 10px 0 0;
+    }
+
+    .input-custom {
+        border-radius: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .input-custom:focus {
+            border-color: #743DB5;
+            box-shadow: 0 0 10px rgba(116, 61, 181, 0.3);
+        }
+
+    .btn-primary {
+        background-color: #743DB5;
+        border: none;
+        padding: 12px;
+        border-radius: 10px;
+        font-size: 16px;
+        transition: 0.3s;
+    }
+
+        .btn-primary:hover {
+            background-color: #5a2d91;
+            transform: scale(1.05);
+        }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,0 +1,38 @@
+﻿@{
+    Layout = "~/Views/Shared/Hr_Layout.cshtml";
+}
+
+
+<h2 class="mb-3 text-black">Add New Manager</h2>
+<form method="post" action="@Url.Action("AddManager", "HR")" class="shadow p-4 bg-white">
+    <div class="mb-3">
+        <label class="form-label">First Name</label>
+        <input type="text" name="FirstName" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Last Name</label>
+        <input type="text" name="LastName" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Department</label>
+        <select name="DepartmentID" class="form-control" required>
+            <option value="">Select Department</option>
+            @foreach (var department in ViewBag.Departments)
+            {
+                <option value="@department.Id">@department.DepartmentName</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" name="Email" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" name="Password" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary ">Add Manager</button>
+    </div>
+</form>

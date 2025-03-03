@@ -1,0 +1,122 @@
+﻿
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    @* <link rel="stylesheet" href="~/css/login.css" asp-append-version="true"> *@
+    <script src="https://kit.fontawesome.com/585fda3aab.js" crossorigin="anonymous"></script>
+
+  
+   
+   
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+                outline: 0;
+                box-sizing: border-box;
+                font-family: 'Varela Round', sans-serif;
+            }
+
+            body {
+                display: flex;
+                height: 100vh;
+                align-items: center;
+                justify-content: center;
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1000%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='%236c2eb9'%3e%3c/rect%3e%3cpath d='M1512 560L0 560 L0 299.5Q62.8 242.3%2c 120 305.1Q194.17 259.27%2c 240 333.44Q277.91 251.35%2c 360 289.26Q411.91 269.17%2c 432 321.08Q510.14 279.22%2c 552 357.35Q561.09 294.44%2c 624 303.52Q691.39 250.91%2c 744 318.31Q827.25 281.56%2c 864 364.82Q865.57 294.39%2c 936 295.96Q1001.12 241.07%2c 1056 306.19Q1130.6 260.79%2c 1176 335.39Q1226.63 314.01%2c 1248 364.64Q1255.9 300.54%2c 1320 308.45Q1373.63 242.07%2c 1440 295.7Q1489.54 273.24%2c 1512 322.78z' fill='%23512a94'%3e%3c/path%3e%3c/g%3e%3c/svg%3e");
+                background-repeat: no-repeat;
+                background-size: cover;
+                animation: move 50s linear alternate infinite;
+            }
+
+            h2 {
+            color: #4c1e51;
+            }
+
+            .login-box {
+                width: 600px;
+                border-radius: 25px;
+                background-color: #fff;
+                padding: 40px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                text-align: center;
+            }
+
+                .login-box h2 {
+                    font-size: 2.2rem;
+                }
+
+                .login-box p {
+                color: #4c1e51;
+                    margin-top: 4px;
+                    font-size: 1.2rem;
+                }
+
+            .form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                margin-top: 20px;
+            }
+
+            .btn {
+                width: 250px;
+                height: 44px;
+                font-size: 13px;
+                font-weight: 600;
+                text-transform: uppercase;
+                padding: 10px;
+                letter-spacing: 1px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                border: none;
+            background-color: #4c1e51;
+                color: #ffffff;
+                box-shadow: 0 8px 24px 0 rgba(255, 235, 167, 0.2);
+                text-decoration: none;
+                border-radius: 25px;
+                cursor: pointer;
+                transition: all 200ms linear;
+            }
+
+                .btn:active,
+                .btn:focus {
+                    background-color: #ffffff;
+                    color: #124ce7;
+                    box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2);
+                }
+
+                .btn:hover {
+                    background-color: #ffffff;
+                color: #4c1e51;
+                box-shadow: 0 8px 24px 0 #4c1e51;
+                }
+        </style>
+    </head>
+    <body>
+
+        <div class="login-box">
+            <h2>Login</h2>
+            <p>Choose your role</p>
+
+<div class="form">
+            <a asp-controller="Employee" asp-action="Login"><button class="btn">Login as Employee</button></a>
+            <a asp-controller="Manager" asp-action="Login"> <button class="btn">Login as Manager</button></a>
+            <a asp-controller="Hr" asp-action="Login"> <button type="submit" class="btn">Login as HR</button></a>
+
+        </div>
+        
+        </div>
+
+    </body>
+</html>

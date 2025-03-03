@@ -1,0 +1,170 @@
+﻿@model IEnumerable<HRmangmentSystem.Models.Manager>
+@{
+    Layout = "_ManagerLayout";
+}
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="row">
+    <!-- Summary Cards -->
+    <div class="col-xl-4 col-md-6">
+        <div class="card flat-card">
+            <div class="card-body text-center">
+                <i class="material-icons-two-tone text-primary mb-2">people</i>
+                <h5>@ViewBag.TotalEmployees</h5>
+                <span>Managed Employees</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4 col-md-6">
+        <div class="card flat-card">
+            <div class="card-body text-center">
+                <i class="material-icons-two-tone text-primary mb-2">event</i>
+                <h5>@ViewBag.TotalLeaveRequests</h5>
+                <span>Leave Requests</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4 col-md-6">
+        <div class="card flat-card">
+            <div class="card-body text-center">
+                <i class="material-icons-two-tone text-primary mb-2">assignment</i>
+                <h5>@ViewBag.TotalTasks</h5>
+                <span>Assigned Tasks</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Leave Requests -->
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>Recent Leave Requests</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Employee</th>
+                            <th>Leave Type</th>
+                            <th>Start Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var leave in (List<HRmangmentSystem.Models.LeaveOrVacation>)ViewBag.RecentLeaveRequests)
+                        {
+                            <tr>
+                                <td>@leave.Employee.FirstName @leave.Employee.LastName</td>
+                                <td>@leave.LeaveType</td>
+                                <td>@(leave.StartDate.HasValue ? leave.StartDate.Value.ToString("yyyy-MM-dd") : "N/A")</td>
+                                <td>@leave.Status</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Tasks -->
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>Recent Tasks</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Employee</th>
+                            <th>Title</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var task in (List<HRmangmentSystem.Models.EmployeeTask>)ViewBag.RecentTasks)
+                        {
+                            <tr>
+                                <td>@task.Employee.FirstName @task.Employee.LastName</td>
+                                <td>@task.Title</td>
+                                <td>@(task.DueDate.HasValue ? task.DueDate.Value.ToString("yyyy-MM-dd") : "N/A")</td>
+                                <td>@task.Status</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Evaluations -->
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>Recent Evaluations</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Employee</th>
+                            <th>Score</th>
+                            <th>Date Evaluated</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var evaluation in (List<HRmangmentSystem.Models.Evaluation>)ViewBag.RecentEvaluations)
+                        {
+                            <tr>
+                                <td>@evaluation.Employee.FirstName @evaluation.Employee.LastName</td>
+                                <td>@evaluation.Score</td>
+                                <td>@(evaluation.DateEvaluated.HasValue ? evaluation.DateEvaluated.Value.ToDateTime(TimeOnly.MinValue).ToShortDateString() : "N/A")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+    <div class="card">
+        <div class="card-header">
+            <h5>Recent Attendance</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Employee</th>
+                        <th>Date</th>
+                        <th>Punch In</th>
+                        <th>Punch Out</th>
+                        <th>Hours</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var attendance in (List<HRmangmentSystem.Models.Attendance>)ViewBag.RecentAttendances)
+                    {
+                        <tr>
+                            <td>@attendance.Employee.FirstName @attendance.Employee.LastName</td>
+                            <td>@(attendance.Date.HasValue ? attendance.Date.Value.ToString("yyyy-MM-dd") : "N/A")</td>
+                            <td>@(attendance.PunchIn.HasValue ? attendance.PunchIn.Value.ToString(@"hh:mm tt") : "N/A")</td>
+                            <td>@(attendance.PunchOut.HasValue ? attendance.PunchOut.Value.ToString(@"hh:mm tt") : "N/A")</td>
+                            <td>@(attendance.Hours.HasValue ? attendance.Hours.Value.ToString(@"hh:mm") : "N/A")</td>
+                            <td>@attendance.Status</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</div>

@@ -1,0 +1,42 @@
+﻿@{
+    Layout = "~/Views/Shared/Hr_Layout.cshtml";
+}
+
+
+@{
+    ViewData["Title"] = "Add Department";
+}
+
+
+<h2>Add New Department</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        @Html.ValidationSummary(false)
+    </div>
+}
+
+<form method="post">
+    <div class="form-group">
+        <label>Department Name</label>
+        <input type="text" name="departmentName" class="form-control" value="@ViewBag.DepartmentName" />
+    </div>
+
+    <div class="form-group">
+        <label>Description</label>
+        <textarea name="description" class="form-control">@ViewBag.Description</textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Employee Count</label>
+        <input type="number" name="employeeCount" class="form-control" value="@ViewBag.EmployeeCount ?? " 0"" min="0" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Department</button>
+</form>

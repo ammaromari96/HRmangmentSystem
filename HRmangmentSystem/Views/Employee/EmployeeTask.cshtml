@@ -1,0 +1,108 @@
+﻿@model IEnumerable<HRmangmentSystem.Models.EmployeeTask>
+
+<style>
+    .task-card {
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        background: #fff;
+        border: none;
+    }
+
+        .task-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(116, 61, 181, 0.3);
+        }
+
+    .task-header {
+        background: linear-gradient(135deg, #743DB5, #5a2d91);
+        padding: 15px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .task-priority {
+        font-size: 14px;
+        font-weight: bold;
+        padding: 6px 12px;
+        border-radius: 10px;
+        background: #ff758c;
+        color: white;
+    }
+
+    .task-status {
+        font-size: 14px;
+        font-weight: bold;
+        padding: 6px 12px;
+        border-radius: 10px;
+        background: #FFD700;
+        color: black;
+    }
+
+    .input-group {
+        display: flex;
+        align-items: center;
+    }
+
+    .btn-save {
+        background-color: #28a745;
+        color: white;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 0 8px 8px 0;
+        transition: 0.3s;
+    }
+
+        .btn-save:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+</style>
+
+@{
+    Layout = "EmployeeDashbord";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        @foreach (var task in Model)
+        {
+            <div class="col-md-4">
+                <div class="card task-card shadow-lg mb-4">
+                    <!-- Task Header with Gradient -->
+                    <div class="task-header text-white text-center">
+                        <h5 class="card-title">@task.Title</h5>
+                    </div>
+
+                    <div class="card-body">
+                        <p class="card-text">@task.Description</p>
+
+                        <p>
+                            <span class="badge task-status">@task.Status</span>
+                            <span class="badge task-priority">@task.Priority Priority</span>
+                        </p>
+
+                        <p><strong>Start Date:</strong> @task.StartDate</p>
+                        <p><strong>Due Date:</strong> @task.DueDate</p>
+
+                        <form method="post" asp-controller="Employee" asp-action="UpdateTaskStatus">
+                            <input type="hidden" name="taskId" value="@task.Id" />
+                            <div class="input-group">
+                                <select name="status" class="form-control">
+                                    <option value="To Do" selected="@(@task.Status == "To Do")">To Do</option>
+                                    <option value="Doing" selected="@(@task.Status == "Doing")">Doing</option>
+                                    <option value="Done" selected="@(@task.Status == "Done")">Done</option>
+                                </select>
+                                <button type="submit" class="btn btn-save"><i class="fas fa-check"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,0 +1,165 @@
+﻿@{
+    Layout = "~/Views/Shared/Hr_Layout.cshtml";
+}
+
+
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="row">
+    <!-- Summary Cards -->
+    <div class="col-xl-4 col-md-6">
+        <div class="card flat-card">
+            <div class="card-body text-center">
+                <i class="material-icons-two-tone text-primary mb-2">group</i>
+                <h5>@ViewBag.TotalEmployees</h5>
+                <span>Employees</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4 col-md-6">
+        <div class="card flat-card">
+            <div class="card-body text-center">
+                <i class="material-icons-two-tone text-primary mb-2">supervisor_account</i>
+                <h5>@ViewBag.TotalManagers</h5>
+                <span>Managers</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4 col-md-6">
+        <div class="card flat-card">
+            <div class="card-body text-center">
+                <i class="material-icons-two-tone text-primary mb-2">business</i>
+                <h5>@ViewBag.TotalDepartments</h5>
+                <span>Departments</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4 col-md-6">
+        <div class="card flat-card">
+            <div class="card-body text-center">
+                <i class="material-icons-two-tone text-primary mb-2">event</i>
+                <h5>@ViewBag.TotalLeaveRequests</h5>
+                <span>Leave Requests</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4 col-md-6">
+        <div class="card flat-card">
+            <div class="card-body text-center">
+                <i class="material-icons-two-tone text-primary mb-2">feedback</i>
+                <h5>@ViewBag.TotalFeedbacks</h5>
+                <span>Feedbacks</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4 col-md-6">
+        <div class="card flat-card">
+            <div class="card-body text-center">
+                <i class="material-icons-two-tone text-primary mb-2">verified_user</i>
+                <h5>@ViewBag.TotalEvaluations</h5>
+                <span>Evaluations</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Feedbacks -->
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>Recent Feedbacks</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Message</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var feedback in (List<HRmangmentSystem.Models.Feedback>)ViewBag.RecentFeedbacks)
+                        {
+                            <tr>
+                                <td>@feedback.Name</td>
+                                <td>@feedback.Message</td>
+                                <td>@(feedback.SubmittedDate.HasValue ? feedback.SubmittedDate.Value.ToString("yyyy-MM-dd") : "N/A")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Leave Requests -->
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>Recent Leave Requests</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Employee</th>
+                            <th>Leave Type</th>
+                            <th>Start Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var leave in (List<HRmangmentSystem.Models.LeaveOrVacation>)ViewBag.RecentLeaveRequests)
+                        {
+                            <tr>
+                                <td>@leave.Employee.FirstName @leave.Employee.LastName</td>
+                                <td>@leave.LeaveType</td>
+                                <td>@(leave.StartDate.HasValue ? leave.StartDate.Value.ToString("yyyy-MM-dd") : "N/A")</td>
+                                <td>@leave.Status</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Evaluations -->
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>Recent Evaluations</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Employee</th>
+                            <th>Score</th>
+                            <th>Date Evaluated</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var evaluation in (List<HRmangmentSystem.Models.Evaluation>)ViewBag.RecentEvaluations)
+                        {
+                            <tr>
+                                <td>@evaluation.Employee.FirstName @evaluation.Employee.LastName</td>
+                                <td>@evaluation.Score</td>
+                                <td>@(evaluation.DateEvaluated.HasValue ? evaluation.DateEvaluated.Value.ToDateTime(TimeOnly.MinValue).ToShortDateString() : "N/A")</td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

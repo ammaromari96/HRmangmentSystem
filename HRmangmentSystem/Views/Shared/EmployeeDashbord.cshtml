@@ -1,0 +1,204 @@
+﻿<!doctype html>
+<html lang="en">
+<!-- [Head] start -->
+
+<head>
+    <title>Home | Dashboardkit Dashboard Template</title><!-- [Meta] -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description"
+          content="Dashboardkit is trending dashboard template made using Bootstrap 5 design framework. Dashboardkit is available in Bootstrap, React, CodeIgniter, Angular,  and .net Technologies.">
+    <meta name="keywords"
+          content="Bootstrap admin template, Dashboard UI Kit, Dashboard Template, Backend Panel, react dashboard, angular dashboard">
+    <meta name="author" content="Codedthemes"><!-- [Favicon] icon -->
+
+    <link rel="icon" href="~/images/favicon.svg" type="image/x-icon"><!-- [Google Font : Public Sans] icon -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700..700&display=swap" rel="stylesheet">
+    <!-- [phosphor Icons] https://phosphoricons.com/ -->
+    <link rel="stylesheet" href="~/fonts/phosphor/duotone/style.css">
+    <!-- [Tabler Icons] https://tablericons.com -->
+    <link rel="stylesheet" href="~/fonts/tabler-icons.min.css"><!-- [Feather Icons] https://feathericons.com -->
+    <link rel="stylesheet" href="~/fonts/feather.css">
+    <!-- [Font Awesome Icons] https://fontawesome.com/icons -->
+    <link rel="stylesheet" href="~/fonts/fontawesome.css">
+    <!-- [Material Icons] https://fonts.google.com/icons -->
+    <link rel="stylesheet" href="~/fonts/material.css"><!-- [Template CSS Files] -->
+    <link rel="stylesheet" href="~/css/style.css" id="main-style-link">
+    <style>
+        .logo-lg {
+            width: 150px;
+            height: auto;
+            display: block;
+            margin: 10px auto;
+        }
+    </style>
+</head><!-- [Head] end --><!-- [Body] Start -->
+@{
+    int? Loged = Context.Session.GetInt32("EmployeeId");
+    string LogedImg = Context.Session.GetString("EmployeeImg");
+    string LogedName = Context.Session.GetString("EmployeeName");
+
+}
+
+<body data-pc-preset="preset-1" data-pc-sidebar-theme="dark" data-pc-header-theme="light" data-pc-sidebar-caption="true"
+      data-pc-direction="ltr" data-pc-theme="light">
+    <!-- [ Pre-loader ] start -->
+    <div class="loader-bg">
+        <div class="pc-loader">
+            <div class="loader-fill"></div>
+        </div>
+    </div><!-- [ Pre-loader ] End --><!-- [ Sidebar Menu ] start -->
+    <nav class="pc-sidebar">
+        <div class="navbar-wrapper">
+            <div class="m-header">
+                <a asp-action="Index" asp-controller="Home" asp-route-id="@Loged"
+                   class="b-brand text-primary">
+                    <!-- ========   Change your logo from here   ============ --> <img src="~/assets/images/logo2.png" alt="logo image" class="logo-lg">
+                </a>
+            </div>
+            <div class="navbar-content">
+                <ul class="pc-navbar">
+                    <li class="pc-item pc-caption"><label>Navigation</label></li>
+                    <li class="pc-item">
+                        <a asp-action="Dashboard" asp-controller="Employee" asp-route-id="@Loged" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="material-icons-two-tone">home</i>
+                            </span><span class="pc-mtext">Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a asp-controller="Employee" asp-action="Profile" asp-route-id="@Loged" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="material-icons-two-tone">list_alt</i>
+                            </span> <span class="pc-mtext">Profile</span>
+                        </a>
+                    </li>
+                    <li class="pc-item">
+                        <a asp-action="EmployeeTask" asp-controller="Employee" asp-route-id="@Loged" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="material-icons-two-tone">person_add_alt_1</i>
+                            </span> <span class="pc-mtext">My Tasks</span>
+                        </a>
+                    </li>
+                    <li class="pc-item">
+                        <a asp-action="RequestLeave" asp-controller="Employee" asp-route-id="@Loged" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="material-icons-two-tone">list_alt</i>
+                            </span> <span class="pc-mtext">Leaves & Vacations </span>
+                        </a>
+                    </li>
+
+
+
+
+
+
+
+
+
+                    <li class="pc-item">
+                        <a href="https://accounts.google.com/InteractiveLogin/signinchooser?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&emr=1&ltmpl=default&ltmplcache=2&osid=1&passive=true&rm=false&scc=1&service=mail&ss=1&ifkv=ASSHykonWKUK_55n7L78NUSQ-TT6eB3fzM2xfnnEnLskFvcfr-uRXCNgYUxLku4hGuwJGlxsfw2T&ddm=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="material-icons-two-tone">desktop_windows</i>
+
+                            </span> <span class="pc-mtext">My Email </span>
+                        </a>
+                    </li>
+
+
+
+                    <li class="pc-item">
+                        <a asp-controller="Employee" asp-action="Logout" asp-route-id="@Loged" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="material-icons-two-tone">list_alt</i>
+                            </span> <span class="pc-mtext">Logout</span>
+                        </a>
+                    </li>
+
+
+
+                   
+
+                </ul>
+
+            </div>
+        </div>
+    </nav><!-- [ Sidebar Menu ] end --><!-- [ Header Topbar ] start -->
+    <header class="pc-header">
+        <div class="header-wrapper">
+            <!-- [Mobile Media Block] start -->
+            <div class="me-auto pc-mob-drp">
+                <ul class="list-unstyled">
+                    <!-- ======= Menu collapse Icon ===== -->
+                    <li class="pc-h-item pc-sidebar-collapse">
+                        <a href="#" class="pc-head-link ms-0" id="sidebar-hide">
+                            <i class="material-icons-two-tone">menu</i>
+                        </a>
+                    </li>
+                    <li class="pc-h-item pc-sidebar-popup">
+                        <a href="#" class="pc-head-link ms-0" id="mobile-collapse">
+                            <i class="material-icons-two-tone">menu</i>
+                        </a>
+                    </li>
+                   @*  <li class="dropdown pc-h-item d-none d-md-flex">
+                        <a class="pc-head-link active pc-head-link-text dropdown-toggle arrow-none me-0"
+                           data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
+                           aria-expanded="false">Profile</a>
+                        <div class="dropdown-menu pc-h-dropdown">
+                            <a asp-controller="Employee" asp-action="Profile" class="dropdown-item">
+                                <i class="material-icons-two-tone">account_circle</i> <span>My Account</span>
+                            </a>
+                            <a asp-controller="Employee" asp-action="Logout" class="dropdown-item">
+                                <i class="material-icons-two-tone">chrome_reader_mode</i> <span>Logout</span>
+                            </a>
+                        </div>
+                    </li> *@
+                </ul>
+            </div><!-- [Mobile Media Block end] -->
+            <div class="ms-auto">
+                <ul class="list-unstyled">
+
+                    <li class="dropdown pc-h-item header-user-profile">
+                        <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
+                           role="button" aria-haspopup="false" data-bs-auto-close="outside" aria-expanded="false">
+                            <img src="~/image/Employee/@LogedImg" alt="user-image" class="user-avtar"> <span class="ms-2">
+                                <span class="user-name">@LogedName</span> 
+                            </span>
+                        </a>
+                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header><!-- [ Header ] end --><!-- [ Main Content ] start -->
+    <div class="pc-container">
+        <div class="pc-content">
+            <!-- [ breadcrumb ] start -->
+            @RenderBody()
+            <!-- [ Main Content ] end -->
+        </div>
+    </div><!-- [ Main Content ] end -->
+
+    <script src="~/js/plugins/apexcharts.min.js"></script>
+    <script src="~/js/pages/dashboard-default.js"></script><!-- [Page Specific JS] end --><!-- Required Js -->
+    <script src="~/js/plugins/popper.min.js"></script>
+    <script src="~/js/plugins/simplebar.min.js"></script>
+    <script src="~/js/plugins/bootstrap.min.js"></script>
+    <script src="~/js/fonts/custom-font.js"></script>
+    <script src="~/js/pcoded.js"></script>
+    <script src="~/js/plugins/feather.min.js"></script>
+
+    @RenderSection("Scripts",  false)
+
+    <script>layout_change('light');</script>
+    <script>layout_sidebar_change('dark');</script><!-- --------------------- -->
+    <script>layout_sidebar_change('dark');</script><!-- --------------------- -->
+    <script>change_box_container('false');</script>
+    <script>layout_caption_change('true');</script>
+    <script>layout_rtl_change('false');</script>
+    <script>preset_change('preset-1');</script>
+</body><!-- [Body] end -->
+
+</html>
